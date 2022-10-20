@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="moi.css">
+<title>Inscription en ligne 2</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+    <div class="container">
+        <img id="myImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjGrm_DmepXcIunbYAlY2b4EPGK9z2Y-0jtg&usqp=CAU" width="400px" height="100%" style="opacity:1;" onmouseover="anim()" onmouseout="anim1()" >
+    </div>
+    <div class="formulaire">
+        <form id="myForm">
+            <span class="form_col">Sexe :</span>
+            <label><input name="sex" type="radio" value="H"/>Homme</label>
+            <label><input name="sex" type="radio" value="F"/>Femme</label> <br>
+            <span class="tooltip">Vous devez sélectionnez votre sexe</span><br /><br />
+            <label class="form_col" for="lastName">Nom :</label><br>
+            <input name="lastName" id="lastName" type="text" /><br>
+            <span class="tooltip">Un nom ne peut pas faire moins de 2 caractères</span><br /><br />
+            <label class="form_col" for="firstName">Prénom:</label><br>
+            <input name="firstName" id="firstName" type="text" /> <br>
+            <span class="tooltip">Un prénom ne peut pas faire moins de 2 caractères</span><br /><br />
+            <label class="form_col" for="age">Âge :</label><br>
+            <input name="age" id="age" type="text" /><br>
+            <span class="tooltip">L'âge doit être compris entre 5 et 140</span><br /><br />
+            <label class="form_col" for="login">Pseudo :</label><br>
+            <input name="login" id="login" type="text" /><br>
+            <span class="tooltip">Le pseudo ne peut pas faire moins de 4 caractères</span><br /><br />
+            <label class="form_col" for="pwd1">Mot de passe:</label><br>
+            <input name="pwd1" id="pwd1" type="password" /><br>
+            <span class="tooltip">Le mot de passe ne doit pas faire moins de 6 caractères</span><br /><br />
+            <label class="form_col" for="pwd2">Mot de passe (confirmation) :</label><br>
+            <input name="pwd2" id="pwd2" type="password" /><br>
+            <span class="tooltip">Le mot de passe de confirmation doit être identique à celui d'origine</span><br /><br />
+            <label class="form_col" >Date de naissance:</label><br>
+            <input type="date"><br>
+            <span class="tooltip">Saisi votre date de naissance</span>
+            <label class="form_col" >Lieu de naissance:</label><br>
+            <input type="text"><br>
+            <span class="tooltip">le lieu de naissance !</span><br /><br />
+            <label class="form_col" >Entrer votre addresse mail:</label><br>
+            <input type="mail" id="email"><br>
+            <span class="tooltip">adresse mail obligatoire</span>
+            <label class="form_col" for="country">ville :</label><br>
+        <select name="country" id="country">
+            <option value="none">Sélectionnez votre ville</option>
+            <option value="dk">Dakar</option>
+            <option value="kl">Kaolack</option>
+            <option value="st">Saint-louis</option>
+            <option value="th">Thiès</option>
+        </select><br>
+        <span class="tooltip">Vous devez sélectionner votre ville</span><br /><br />
+        <span class="form_col"></span>
+        <label><input name="news" type="checkbox" /> Je désire recevoir la nouvelle chaque mois.</label><br /><br />
+        <span class="form_col"></span>
+        <input type="submit" value="M'inscrire" /> 
+        <input type="reset" value="Réinitialiser le formulaire" />
+        </form> <br>
+    </div>
+    <footer class="pied">
+
+    </footer>
+<script src="moi.js"></script>
+</body>
+</html>
