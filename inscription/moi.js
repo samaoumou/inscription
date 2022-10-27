@@ -6,6 +6,7 @@
     for (var i = 0 ; i < spansLength ; i++) {
     if (spans[i].className == 'tooltip') {
     spans[i].style.display = 'none';
+    
     } } }
     // La fonction ci-dessous permet de récupérer la« tooltip » qui correspond à notre input
     function getTooltip(element) {
@@ -15,15 +16,7 @@
 } } return false; }
 // Fonctions de vérification du formulaire, ellesrenvoient « true » si tout est OK
 var check = {}; // On met toutes nos fonctions dans unobjet littéral
-check['sex'] = function() {
-var sex = document.getElementsByName('sex'),
-tooltipStyle = getTooltip(sex[1].parentNode).style;
-if (sex[0].checked || sex[1].checked) {
-tooltipStyle.display = 'none';
-return true;
-} else {
-tooltipStyle.display = 'inline-block';
-return false; } };
+
 check['lastName'] = function(id) {
 var name = document.getElementById(id),
 tooltipStyle = getTooltip(name).style;
@@ -36,23 +29,11 @@ name.className = 'incorrect';
 tooltipStyle.display = 'inline-block';
 return false; } };
 check['firstName'] = check['lastName']; // La fonctionpour le prénom est la même que celle du nom
-check['age'] = function() {
-var age = document.getElementById('age'),
-tooltipStyle = getTooltip(age).style,
-ageValue = parseInt(age.value);
-if (!isNaN(ageValue) && ageValue >= 5 && ageValue <=
-140) {
-age.className = 'correct';
-tooltipStyle.display = 'none';
-return true;
-} else {
-age.className = 'incorrect';
-tooltipStyle.display = 'inline-block';
-return false; } };
-check['login'] = function() {
-var login = document.getElementById('login'),
-tooltipStyle = getTooltip(login).style;
-if (login.value.length >= 4) {
+
+check['email'] = function() {
+var login = document.getElementById('email').value,
+tooltipStyle = getTooltip(email).style;
+if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(login)) {
 login.className = 'correct';
 tooltipStyle.display = 'none';
 return true;
@@ -60,6 +41,7 @@ return true;
 login.className = 'incorrect';
 tooltipStyle.display = 'inline-block';
 return false; } };
+
 
 
 /* pour le maus de passe */
@@ -100,15 +82,15 @@ return true;
 } else {
 tooltipStyle.display = 'inline-block';
 return false; } };
-check['email'] = function() {
-    var email = document.getElementById("email"),
+check['photo'] = function() {
+    var login = document.getElementById('photo'),
     tooltipStyle = getTooltip(email).style;
-    if (email.value.length >= 2) {
-    email.className = 'correct';
+    if (login.value.length !='') {
+    login.className = 'correct';
     tooltipStyle.display = 'none';
     return true;
     } else {
-    email.className = 'incorrect';
+    login.className = 'incorrect';
     tooltipStyle.display = 'inline-block';
     return false; } };
 // Mise en place des événements
@@ -132,11 +114,7 @@ result = check[i](i) && result;
 if (result) {
 alert('Le formulaire est bien rempli.');
 }
-var mail = document.getElementById("email").value;
-if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(mail)) {
-alert("Adresse e-mail requise !");
-} else {
-alert("Adresse e-mail invalide !"); }
+
 return false;
 };
 myForm.onreset = function() {
