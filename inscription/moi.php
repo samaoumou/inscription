@@ -1,6 +1,8 @@
 <?php include '../base.php';  ?>
 
 <?php
+/* var_dump($_POST); */
+
 if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST['submit'] existe si l'on a vraiment appuyer sur submit
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];       
@@ -8,10 +10,13 @@ $email = $_POST['login'];
 $pwd2 = md5($_POST['pwd2']);
 $country = $_POST['country'];
 $photo = $_POST['photo'];
+$date_inscription= date( "Y-m-d" );
+// => 07/04/2022 08:00:00
 $compte = false;
 $matricule = /* date('Y- ', time()).$row.' -EDR'; */ 'générer automatiquement';
 $select_mail = $conn->prepare("SELECT email FROM `employe` WHERE email = ? ");
 $select_mail->execute([$email]);
+ 
 
 
 if ($select_mail->rowCount() > 0)
@@ -20,9 +25,9 @@ if ($select_mail->rowCount() > 0)
 }
 else {
     //on insert les données dans la base de donnée
-    $recup=$conn->exec("INSERT INTO employe (firtName, lastName,email,pwd2,country,photo)  
-    VALUES('$_POST[firtName]','$_POST[lastName]','$_POST[login]','$_POST[pwd2]','$_POST[country]','$_POST[photo]')");
-    $insertion->execute([$matricule, $firstName, $lastName, $pwd2, $country, $photo, $email ]);
+    $insertion=$conn->prepare("INSERT INTO employe (matricule,firstName, lastName, pwd2, country, photo, date_inscription, email)  
+    VALUES(?,?,?,?,?,?,?,?)");
+    $insertion->execute([$matricule, $firstName, $lastName, $pwd2, $country, $photo, $date_inscription, $email ]);
     //on récuperer l'id de enregistrement 
     $sql = "SELECT id FROM `employe` WHERE  email = '$email' ";
     $id = $conn->prepare($sql);
@@ -52,21 +57,27 @@ else {
 </head>
 <body>
 <div class="container">
+
+    <div class="formulaire">
     <?php
     if (isset($message)) {
        foreach ($message as $message) {
         if ($compte == true) {
-            echo '<div class="message">'. $message . '</div>';
+            echo '<div class="">'. $message . '</div>';
         }
         else
         {
-            echo '<div class="message_">'. $message . '</div>';
+            echo '<div class="">'. $message . '</div>';
         }    
        }
     }
-    ?>
-    <div class="formulaire">   
-        <form id="myForm" method="post">
+    ?>  
+    
+
+
+
+
+        <form id="myForm" action="" method="post">
             <img src="../img/images.jpeg" alt="" width="100px" height="70px"><br>
             <div class="logo">
                 <h3>Formulaire d'Inscription</h3>
@@ -79,19 +90,19 @@ else {
                 </div>
                 <div class="ext">
                     <label class="form_col" for="firstName">Prénom:</label><br>
-                    <input name="firstName" id="firstName" type="text" /> 
+                    <input name="firstName" id="firstName" type="text"  /> 
                     <span class="tooltip">Un prénom ne peut pas faire moins de 2 caractères</span><br /><br />
                 </div>
             </div>
             <div class="centre">
                 <div class="ext">
                     <label class="form_col" for="email">Mail :</label><br>
-                    <input name="login" id="email" type="text" />
+                    <input name="login" id="email" type="mail"  />
                     <span class="tooltip">L'adresse email est invalide</span><br /><br />
                 </div>
                 <div class="ext">
                     <label class="form_col" for="pwd1">Mot de passe:</label><br>
-                    <input name="pwd1" id="pwd1" type="password" />
+                    <input name="pwd1" id="pwd1" type="password"  />
                     <span class="tooltip">Le mot de passe ne doit pas faire moins de 6 caractères</span><br /><br />
                 </div>
             </div>
@@ -105,21 +116,22 @@ else {
                     <label class="form_col" for="country">Role :</label><br>
                     <select name="country" id="country" class="form_col">
                         <option value="none" class="form_col">Votre role</option>
-                        <option value="a">admin</option>
-                        <option value="u">user</option>
+                        <option value="admin">admin</option>
+                        <option value="user">user</option>
                     </select><br>
                     <span class="tooltip">Vous devez sélectionner votre role</span><br /><br />
                 </div>
             </div>
             <div class="centre1">
                 <div class="ext">
-                    <label class="form_col" for="photo">photo </label><br>
-                    <input name="photo" id="photo" type="file" />
+                <label for="icone"></label><br />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                    <input type="file" name="photo" id="mon_fichier" /><br /> 
+
                     <!-- <span class="tooltip">Votre photo est obligatoire</span><br /><br /> -->
                 </div>
                 <span class="form_col"></span>
-                <input type="submit" name="submit" id="submit" value="envoyer" class="btn"/>
-                    
+                <input type="submit" name="submit" id="submit" value="envoyer" class="btn"/> 
                 </form> <br>
      </div>
     

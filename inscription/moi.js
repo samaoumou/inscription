@@ -6,7 +6,6 @@
     for (var i = 0 ; i < spansLength ; i++) {
     if (spans[i].className == 'tooltip') {
     spans[i].style.display = 'none';
-    
     } } }
     // La fonction ci-dessous permet de récupérer la« tooltip » qui correspond à notre input
     function getTooltip(element) {
@@ -116,6 +115,7 @@ alert('Le formulaire est bien rempli.');
 }
 
 return false;
+
 };
 myForm.onreset = function() {
 for (var i = 0 ; i < inputsLength ; i++) {
@@ -154,3 +154,21 @@ function anim1() { /* changement de couleur */
     myImg.style="auto";    
 }
 window.onload;
+
+
+function bigImg(x) {
+    x.style.color="white";
+    x.style.background="red"
+  }
+  function normalImg(x) { /* changement de couleur */
+    x.style.color="black";
+    x.style.background="white"
+  }
+  function bigImg1(x) {
+    x.style.color="white";
+    x.style.background="green"
+  }
+  function normalImg1(x) { /* changement de couleur */
+    x.style.color="black";
+    x.style.background="white"
+  }

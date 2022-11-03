@@ -8,7 +8,7 @@
             include("base_de_donnée.php");
                 $list = "UPDATE employe SET etat = '1' where id=$id";
                 $result = $conn->query($list);
-                header("Location:liste.php");
+                header("Location:liste_active.php");
         }
     }
 

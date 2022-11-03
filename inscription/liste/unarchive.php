@@ -1,5 +1,5 @@
-
-<?php
+<?php 
+// var_dump($_GET["id"]);die;
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,10 +13,18 @@ try {
 } catch(PDOException $e) {
   echo "Connexion échouée: " . $e->getMessage();
 }
+
 ?>
+<?php 
 
-
-  
-
-  
-
+if(isset($_GET["id"])){
+    $id = $_GET["id"];
+    $date_archive=date( "Y-m-d" );
+    if(!empty($id) && is_numeric($id)){
+        include("base.php");
+            $list = "UPDATE employe SET etat = '0' where id=$id";
+            $result = $conn->query($list);
+            header("Location:archive.php");
+    }
+}
+?>

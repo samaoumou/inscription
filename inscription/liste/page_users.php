@@ -10,11 +10,16 @@
  </head>
  
  <body>
- <form class="d-flex" role="search">
-         <a class="btn btn-primary" href="../Admin/principale.php" role="button">Retour</a>
-      </form>
+   <div class="main">
+         <a href="login.php" class="lien"><span class="material-symbols-outlined">logout</span></a>   
+         <input type="text" placeholder="recherche" class="recherche">
+   </div>  
+ <div class="blue">
+   <img src="" alt="">
   
-    <h1 align=center> Liste des inscrits</h1>
+   
+  
+
         <?php
   try  //Connection a la bdd
   {
@@ -30,31 +35,28 @@
         echo '<tr>';
         echo '<th class="thliste">Prénom</th>';
         echo '<th class="thliste">Nom</th>';
-        echo '<th class="thliste">Role</th>';
+        echo '<th class="thliste">Matricule</th>';
         echo '<th class="thliste">Email</th>';
-        echo '<th class="thliste">Action</th>';
+        echo '<th class="thliste">Date inscription</th>';
         echo '</tr>';
             while($donnees = $reponse->fetch()) // Renvoit les valeurs de la bdd
             {
     echo '<tr>';
       echo '<td class="tdliste">' . $donnees['firstName'] . '</td>';
       echo '<td class="tdliste">' . $donnees['lastName'] . '</td>';
-      echo '<td class="tdliste">' . $donnees['country'] . '</td>';
+      echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
       echo '<td class="tdliste">' . $donnees['email'] . '</td>';
-      echo '<td class="tdliste"> 
-      <a href="supp.php? id=' . $donnees["id"] . ' " onclick="confirmer()"><span class="material-symbols-outlined"></span></a>
-      <a href="edite.php? id=' . $donnees["id"] . ' " ><span class="material-symbols-outlined"></span></a>
-      <a href="changer.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined"></span></a>         
-      </td>';
+      echo '<td class="tdliste">' . $donnees['date_inscription'] . '</td>';
+
     echo '</tr>';
             }
     echo '</table></div></center>';
             $pdo = null;
         ?>
-
+ </div>
      <style> 
      table,td,th{
-      padding: 10px;
+        padding: 10px;
         border: 1px solid black;
         border-collapse: collapse;
               
@@ -62,12 +64,49 @@
      body{
       background-color: rgb(214, 214, 214); 
       /* background-image:  url("../img/logo-lareussite.png "); */
-    
-      
      }
-     th{
-      background-color: blue;
+     th, td{
+      background-color: #FFFF;
      }
+     .blue{
+        background-color: rgb(0,30,94);
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        border: 5px solid blue;
+
+    }
+    .liste{
+    width:400px;
+    margin:0 auto;
+    margin-top:25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .bb{
+      display: flex;
+      /* flex-wrap: wrap; */
+    }
+    .recherche{
+      height: 40px;
+      float: right;
+    }
+    .main{
+      width: 100%;
+      background-color: rgb(0,30,94);
+    }
+    .lien{
+      float: right;
+    }
+    .lar{
+      float: right;
+      background-color: #FFFF;
+      height: 30px;
+      text-decoration: none;
+      color: #000;
+    }
     </style>
     <script src="js.js"></script>
     </body>
