@@ -2,6 +2,8 @@
  
 include ("base.php");
 session_start();
+/* var_dump($_SESSION['firstName']);
+die; */
 
 ?>
 <!DOCTYPE html>
@@ -22,10 +24,21 @@ session_start();
     </div>
     <div class="div2">
         <p>
-            Prénom : <?php if(isset($_SESSION['firstName'])){echo $_SESSION['firstName'];} ?> <br><br>
-            Nom : <?php if(isset($_SESSION['lastName'])){echo $_SESSION['lastName'];} ?>
+<?php 
+
+
+
+?>
+
+
+
+           <div class="profil">
+           <h5>Prénom : </h5> <?php if(isset($_SESSION['firstName'])){echo '<h5>' .$_SESSION['firstName'].'</h5>';} ?> 
+            <h5>Nom : </h5> <?php if(isset($_SESSION['lastName'])){echo '<h5>' .$_SESSION['lastName'].'</h5>';} ?>
+            <h5>photo : </h5>  <?php  if(isset($_SESSION['photo'])){echo $_SESSION['photo'];} ?>
+           </div>
             <!-- <span><a href="logout.php">Déconnexion</a></span> -->
-        </p>
+        
     </div>
 </header>
    <div class="">
@@ -147,6 +160,11 @@ session_start();
     .nnn{
       width: 100%;
       height: 100px;
+    }
+    .profil{
+      width: 60%;
+      height: 100px;
+      
     }
     
     </style>

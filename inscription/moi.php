@@ -1,3 +1,4 @@
+
 <?php include '../base.php';  ?>
 
 <?php
@@ -9,7 +10,7 @@ $lastName = $_POST['lastName'];
 $email = $_POST['login']; 
 $pwd2 = md5($_POST['pwd2']);
 $country = $_POST['country'];
-$photo = $_POST['photo'];
+@$photo = file_get_contents($_FILES['photo']['tmp_name']);
 $date_inscription= date( "Y-m-d" );
 // => 07/04/2022 08:00:00
 $compte = false;
@@ -77,7 +78,7 @@ else {
 
 
 
-        <form id="myForm" action="" method="post">
+        <form id="myForm" action="" method="post" enctype="multipart/form-data">
             <img src="../img/images.jpeg" alt="" width="100px" height="70px"><br>
             <div class="logo">
                 <h3>Formulaire d'Inscription</h3>
@@ -125,8 +126,7 @@ else {
             <div class="centre1">
                 <div class="ext">
                 <label for="icone"></label><br />
-                    <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                    <input type="file" name="photo" id="mon_fichier" /><br /> 
+                    <input type="file" name="photo" class="form-control">
 
                     <!-- <span class="tooltip">Votre photo est obligatoire</span><br /><br /> -->
                 </div>

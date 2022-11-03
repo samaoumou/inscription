@@ -31,11 +31,17 @@ try {
       $check->execute(array($email));
       $data = $check->fetch();
       $row = $check->rowCount();
+/*       var_dump($data);
+      die; */
       
         if($row!=0) // nom d'utilisateur et mot de passe correctes
         {
-           $_SESSION['email'] = $username;
-           $_SESSION['id'] = $id;
+       
+           $ma=$_SESSION["firstName"]=$data["firstName"];         
+           $email=$_SESSION["lastName"]=$data["lastName"];         
+           $photo=$_SESSION["photo"]=$data["photo"];
+            /* var_dump($ma);
+           die;  */
 
            if(($data['country'] =='admin')){
             header('Location: liste_active.php'); 
