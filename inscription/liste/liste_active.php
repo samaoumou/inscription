@@ -35,7 +35,7 @@ die; */
            <div class="profil">
            <h5>Prénom : </h5> <?php if(isset($_SESSION['firstName'])){echo '<h5>' .$_SESSION['firstName'].'</h5>';} ?> 
             <h5>Nom : </h5> <?php if(isset($_SESSION['lastName'])){echo '<h5>' .$_SESSION['lastName'].'</h5>';} ?>
-            <h5>photo : </h5>  <?php  if(isset($_SESSION['photo'])){echo $_SESSION['photo'];} ?>
+            <h5>photo : </h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 100px;height:100px;border-radius:50%;"/>'; ?>
            </div>
             <!-- <span><a href="logout.php">Déconnexion</a></span> -->
         
@@ -85,7 +85,7 @@ die; */
       echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
       echo '<td class="tdliste">' . $donnees['email'] . '</td>';
       echo '<td class="tdliste bb" > 
-            <a href="confirmS.php? id=' . $donnees["id"] . ' " onclick= return><span class="material-symbols-outlined">delete</span></a>
+            <a href="supp.php? id=' . $donnees["id"] . ' " onclick= return><span class="material-symbols-outlined">delete</span></a>
             <a href="modifier.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined">border_color</span></a>
             <a href="change.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined"> published_with_changes</span></a>         
             </td>';

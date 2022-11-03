@@ -40,8 +40,8 @@ try {
            $ma=$_SESSION["firstName"]=$data["firstName"];         
            $email=$_SESSION["lastName"]=$data["lastName"];         
            $photo=$_SESSION["photo"]=$data["photo"];
-            /* var_dump($ma);
-           die;  */
+/*              var_dump($data["photo"]);
+           die;   */
 
            if(($data['country'] =='admin')){
             header('Location: liste_active.php'); 
