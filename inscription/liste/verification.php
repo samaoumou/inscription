@@ -21,8 +21,8 @@ try {
 }
     // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
     // pour éliminer toute attaque de type injection SQL et XSS
-    $username = mysqli_real_escape_string($db,htmlspecialchars($_POST['login'])); 
-    $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['pwd2']));
+        $username = htmlspecialchars($_POST['login']); 
+        $password = htmlspecialchars($_POST['pwd2']);
     if($username !== "" && $password !== "")
     {
 
@@ -31,6 +31,7 @@ try {
       $check->execute(array($email));
       $data = $check->fetch();
       $row = $check->rowCount();
+      
         if($row!=0) // nom d'utilisateur et mot de passe correctes
         {
            $_SESSION['email'] = $username;
@@ -40,7 +41,7 @@ try {
             header('Location: liste_active.php'); 
            }
            elseif($data['country']=='user'){
-            header('Location: page_user.php'); 
+            header('Location: page_users.php'); 
            }   
         } 
         else

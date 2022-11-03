@@ -1,3 +1,9 @@
+<?php  
+ 
+include ("base.php");
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
  <head>
@@ -10,11 +16,25 @@
  </head>
  
  <body>
-   <div class="main">
+ <header>
+    <div class="div1">
+
+    </div>
+    <div class="div2">
+        <p>
+            Prénom : <?php if(isset($_SESSION['firstName'])){echo $_SESSION['firstName'];} ?> <br><br>
+            Nom : <?php if(isset($_SESSION['lastName'])){echo $_SESSION['lastName'];} ?>
+            <!-- <span><a href="logout.php">Déconnexion</a></span> -->
+        </p>
+    </div>
+</header>
+   <div class="">
          <a href="logout.php" class="lien"><span class="material-symbols-outlined">logout</span></a>   
-         <form action="recherche.php" method="search">
-         <input type="text" placeholder="recherche" name="search" class="recherche">
-         <input type="submit" name="search" id="submit" value="envoyer" class="btn"/> 
+         <form action="recherche.php" method="post">
+         <div class="nnn">
+              <input type="text" placeholder="recherche" name="search" class="recherche">
+              <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn"/>
+         </div> 
          </form>
    </div>  
  <div class="blue">
@@ -52,7 +72,7 @@
       echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
       echo '<td class="tdliste">' . $donnees['email'] . '</td>';
       echo '<td class="tdliste bb" > 
-            <a href="supp.php? id=' . $donnees["id"] . ' " onclick="confirmer()"><span class="material-symbols-outlined">delete</span></a>
+            <a href="confirmS.php? id=' . $donnees["id"] . ' " onclick= return><span class="material-symbols-outlined">delete</span></a>
             <a href="modifier.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined">border_color</span></a>
             <a href="change.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined"> published_with_changes</span></a>         
             </td>';
@@ -104,6 +124,7 @@
     .main{
       width: 100%;
       background-color: rgb(0,30,94);
+      float: left;
     }
     .lien{
       float: right;
@@ -118,6 +139,16 @@
     tr{
       background-color: #FFFF;
     }
+    .btn{
+      background-color: green;
+      color: #FFF;
+      float: right;
+    }
+    .nnn{
+      width: 100%;
+      height: 100px;
+    }
+    
     </style>
     <script src="../moi.js"></script>
     </body>
