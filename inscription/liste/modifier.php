@@ -50,12 +50,15 @@ if(!isset($email)){
             <h1>Modifier un employer</h1><br>
             <form action="" method="POST">
                 <div class="mb-3">
+                    <label for="">Email</label>
                     <input class="form-control" type="email" name="login" value="<?= $email?>"  placeholder="email">
                 </div>
                 <div class="mb-3">
+                <label for="">Prénom</label>
                     <input class="form-control" type="text" name="firstName" value="<?= $firstName?>"  placeholder="Prenom">
                 </div>
                 <div class="mb-3">
+                <label for="">Nom</label>
                     <input class="form-control" type="text" name="lastName" value="<?= $lastName?>"  placeholder="Nom">
                 </div>
                 <div class="mb-3">

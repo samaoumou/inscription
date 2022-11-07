@@ -1,0 +1,38 @@
+      <?php
+  try  //Connection a la bdd
+  {
+   $bdd = new PDO('mysql:host=localhost;dbname=inscription;charset=utf8', 'root', '');
+  }
+  catch (Exception $e)
+  {
+   die('Erreur : ' . $e->getMessage());
+  }
+  $reponse = $bdd->query('SELECT * FROM employe WHERE etat = 0');
+  
+        echo '<center><div class="liste"><table>';
+        echo '<tr>';
+        echo '<th class="thliste">Prénom</th>';
+        echo '<th class="thliste">Nom</th>';
+        echo '<th class="thliste">Role</th>';
+        echo '<th class="thliste">Matricule</th>';
+        echo '<th class="thliste">Email</th>';
+        echo '<th class="thliste">Action</th>';
+        echo '</tr>';
+            while($donnees = $reponse->fetch()) // Renvoit les valeurs de la bdd
+            {
+    echo '<tr>';
+      echo '<td class="tdliste">' . $donnees['firstName'] . '</td>';
+      echo '<td class="tdliste">' . $donnees['lastName'] . '</td>';
+      echo '<td class="tdliste">' . $donnees['country'] . '</td>';
+      echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
+      echo '<td class="tdliste">' . $donnees['email'] . '</td>';
+      echo '<td class="tdliste bb" > 
+            <a href="supp.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous archiver cette personne\')"><span class="material-symbols-outlined">delete</span></a>
+            <a href="modifier.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous modifier cette personne\')"><span class="material-symbols-outlined">border_color</span></a>
+            <a href="change.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous changer le role de cette personne\')"><span class="material-symbols-outlined"> published_with_changes</span></a>         
+            </td>';
+      echo '</tr>';
+               }
+      echo '</table></div></center>';
+            $pdo = null;
+        ?>

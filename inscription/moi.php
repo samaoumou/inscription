@@ -42,7 +42,8 @@ else {
     $matricule2->execute();
 
     $message []  = "inscription reussi, votre matricule: ". $matricule;
-    $compte = true;  
+    $compte = true; 
+    echo '<a href="liste/login.php">Se connecter</a>'; 
 }
 }
 ?> 

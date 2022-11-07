@@ -36,7 +36,7 @@ try {
       
         if($row!=0) // nom d'utilisateur et mot de passe correctes
         {
-       
+           $_SESSION['email']=$data['email'];
            $ma=$_SESSION["firstName"]=$data["firstName"];         
            $email=$_SESSION["lastName"]=$data["lastName"];         
            $photo=$_SESSION["photo"]=$data["photo"];
@@ -44,10 +44,21 @@ try {
            die;   */
 
            if(($data['country'] =='admin')){
-            header('Location: liste_active.php'); 
+               if(($data['etat']==0)){
+                  header('Location: liste_active.php');
+               }
+               else{
+                  header('Location: login.php?erreur=1');
+               } 
            }
            elseif($data['country']=='user'){
-            header('Location: page_users.php'); 
+            header('Location: page_users.php');
+            if(($data['etat']==0)){
+               header('Location: page_users.php');
+            }
+            else{
+               header('Location: login.php?erreur=1');
+            }
            }   
         } 
         else

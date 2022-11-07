@@ -8,9 +8,11 @@ if(isset($_POST['submit'])){
       $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE matricule=:matricule and etat= 0");
       $select->execute(['matricule' => $mat]);
       $row=$select->fetch(PDO::FETCH_ASSOC);
+
 }
-?>  
-      <a href="liste_active.php" class="retour">Retour</a>
+?> 
+
+      <a href="page_users.php" class="retour">Retour</a>
       <div class="centre">
       <table class="lion">
          <tr>

@@ -16,27 +16,20 @@ die; */
   <title>Liste des fiches de procédures</title>
   <link rel="stylesheet" type="text/css" href="btn.css" />
  </head>
- 
+ <div class="profil">
+           <h5>Prénom :</h5> <?php if(isset($_SESSION['firstName'])){echo '<h5>' .$_SESSION['firstName'].'</h5>';} ?>
+ </div>           
+ <div class="profil">
+          <h5>Nom :</h5> <?php if(isset($_SESSION['lastName'])){echo '<h5>' .$_SESSION['lastName'].'</h5>';} ?>
+ </div>
+ <div class="profil">
+          <h5>photo :</h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 50px;height:50px;border-radius:50%;"/>'; ?>
+ </div>           
  <body>
  <header>
-    <div class="div1">
-
-    </div>
-    <div class="div2">
-        <p>
 <?php 
 
-
-
 ?>
-
-
-
-           <div class="profil">
-           <h5>Prénom : </h5> <?php if(isset($_SESSION['firstName'])){echo '<h5>' .$_SESSION['firstName'].'</h5>';} ?> 
-            <h5>Nom : </h5> <?php if(isset($_SESSION['lastName'])){echo '<h5>' .$_SESSION['lastName'].'</h5>';} ?>
-            <h5>photo : </h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 100px;height:100px;border-radius:50%;"/>'; ?>
-           </div>
             <!-- <span><a href="logout.php">Déconnexion</a></span> -->
         
     </div>
@@ -53,48 +46,6 @@ die; */
  <div class="blue">
    <img src="" alt="">
    <a href="archive.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste archivée</a>
-   
-  
-
-        <?php
-  try  //Connection a la bdd
-  {
-   $bdd = new PDO('mysql:host=localhost;dbname=inscription;charset=utf8', 'root', '');
-  }
-  catch (Exception $e)
-  {
-   die('Erreur : ' . $e->getMessage());
-  }
-  $reponse = $bdd->query('SELECT * FROM employe WHERE etat = 0');
-  
-        echo '<center><div class="liste"><table>';
-        echo '<tr>';
-        echo '<th class="thliste">Prénom</th>';
-        echo '<th class="thliste">Nom</th>';
-        echo '<th class="thliste">Role</th>';
-        echo '<th class="thliste">Matricule</th>';
-        echo '<th class="thliste">Email</th>';
-        echo '<th class="thliste">Action</th>';
-        echo '</tr>';
-            while($donnees = $reponse->fetch()) // Renvoit les valeurs de la bdd
-            {
-    echo '<tr>';
-      echo '<td class="tdliste">' . $donnees['firstName'] . '</td>';
-      echo '<td class="tdliste">' . $donnees['lastName'] . '</td>';
-      echo '<td class="tdliste">' . $donnees['country'] . '</td>';
-      echo '<td class="tdliste">' . $donnees['matricule'] . '</td>';
-      echo '<td class="tdliste">' . $donnees['email'] . '</td>';
-      echo '<td class="tdliste bb" > 
-            <a href="supp.php? id=' . $donnees["id"] . ' " onclick= return><span class="material-symbols-outlined">delete</span></a>
-            <a href="modifier.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined">border_color</span></a>
-            <a href="change.php? id=' . $donnees["id"] . ' "><span class="material-symbols-outlined"> published_with_changes</span></a>         
-            </td>';
-      echo '</tr>';
-               }
-      echo '</table></div></center>';
-            $pdo = null;
-        ?>
- </div>
      <style> 
      table,td,th{
         padding: 10px;
@@ -159,15 +110,217 @@ die; */
     }
     .nnn{
       width: 100%;
-      height: 100px;
+      height: 30px;
     }
     .profil{
-      width: 60%;
-      height: 100px;
-      
+      width: 15%;
+      height: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #FFF;
+      justify-content:space-around;
     }
     
     </style>
     <script src="../moi.js"></script>
-    </body>
+
+<?php
+ 
+
+
+    
+    $reponse = $conn->query('SELECT COUNT(*) AS total FROM employe');
+    $total_lignes = $reponse->fetch()['total'];
+    $limite = 10;
+    $nbre_pages = ceil($total_lignes / $limite);
+    
+    $page = (isset($_GET['page']) and $_GET['page']>0) ? $_GET['page'] : 1;
+    $page = (isset($_GET['page']) and $_GET['page']>$nbre_pages) ? $nbre_pages : $page;
+    $debut = ($page-1)*$limite;
+    
+    $reponse = $conn->prepare('SELECT * FROM employe WHERE etat=0 ORDER BY ID ASC LIMIT :debut, :limite ');
+    $reponse->bindValue('debut',$debut, PDO::PARAM_INT);
+    $reponse->bindValue('limite',$limite, PDO::PARAM_INT);
+    $reponse->execute() || die('Impossible de charger la page');
+        
+    ?>
+   <div class="centrer">
+
+    <table>
+<div>
+<thead>
+        <tr>
+            <th>Numéro</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Role</th>
+            <th>Matricule</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <?php
+        for ($i=0; $i < $limite; $i++) 
+        {
+            $debut++; 
+            echo '<tr>';
+            if($debut<=$total_lignes)
+            {
+                echo '<td class="identifiant">' . ($debut) . '</td>';
+            }
+            else
+            {
+                echo '<td class="cellule_vide"></td>';
+            }
+            if($donnees = $reponse->fetch())
+            {
+                echo '<td>' . $donnees['firstName'] . '</td>';
+                echo '<td>' . $donnees['lastName'] . '</td>';
+                echo '<td>' . $donnees['country'] . '</td>';
+                echo '<td class="centre">' . $donnees['matricule'] . '</td>';
+                echo '<td class="centre">' . $donnees['email'] . '</td>';
+                echo '<td class="tdliste bb" > 
+                <a href="supp.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous archiver cette personne\')"><span class="material-symbols-outlined">delete</span></a>
+                <a href="modifier.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous modifier cette personne\')"><span class="material-symbols-outlined">border_color</span></a>
+                <a href="change.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous changer le role de cette personne\')"><span class="material-symbols-outlined"> published_with_changes</span></a>         
+                </td>'; 
+            }
+            else
+            {
+                echo '<td class="cellule_vide"></td>';
+                echo '<td class="cellule_vide"></td>';
+                echo '<td class="cellule_vide"></td>';
+                echo '<td class="cellule_vide"></td>';
+                echo '<td class="cellule_vide"></td>';
+                echo '<td class="cellule_vide"></td>';
+               
+            }
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+</div>
+<div class="centre">
+<tfoot>
+            <tr>
+                <th colspan="7">
+                <?php
+                if($page>1)
+                {
+                ?> 
+                    <a href="?page=<?php echo $page-1; ?>">&LeftTriangle;</a>
+                <?php
+                }
+                else
+                {
+                ?>
+                    <span class="invalide">&bemptyv;</span>
+                <?php
+                }
+                for($i=1; $i<=$nbre_pages; $i++)
+                {
+                    if($i!=$page)
+                    {
+                        echo '<a href="?page=' . $i . '">' . $i . '</a> ';
+                    }
+                    else
+                    {
+                        echo '<span>' . $i . '</span> ';
+                    }   
+                }
+                if($page<$nbre_pages)
+                {
+                ?>
+                    <a href="?page=<?php echo $page+1; ?>">&RightTriangle;</a>
+                <?php
+                }
+                else
+                {
+                ?>
+                    <span class="invalide">&bemptyv;</span>
+                <?php
+                }
+                ?>
+                </th>
+            </tr>
+        </tfoot>
+</div>
+    </table>
+    </div>
+    </div>
+    <style>
+
+
+table tfoot tr th span.invalide
+{
+  color: red;
+  background-color:#FFFF;
+}
+td,th
+{
+  border: 1px solid blue;
+}
+td.centre
+{
+  text-align: center;
+  background-color: rgb(0,30,94);
+}
+table thead th
+{
+  background-color: #FFF;
+  color: blue;
+}
+/* table tbody td.identifiant
+{
+  width: 15px;
+  color: white;
+  background-color: rgb(0,128,0);
+} */
+table tbody td
+{
+  background-color: rgb(0,30,94);
+  color: white;
+}
+table tbody td.cellule_vide
+{
+  border: none;
+}
+table tfoot tr
+{
+  height: 23px;
+}
+table tfoot tr th
+{
+  border: none;
+}
+table tfoot tr th a, table tfoot tr th span
+{
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+  color: #c0c0c0;
+}
+table tfoot tr th a
+{
+  text-decoration: none;
+  background-color: rgb(0,128,0);
+  color: #FFF; 
+}
+table tfoot tr th a:active
+{
+  background-color: RGBa(0,0,255,0.5); 
+}
+table tfoot tr th span.invalide
+{
+  color: red;
+  background-color: #c0c0c0;
+}
+
+</style>
+
+
+</body>
+
 </html>

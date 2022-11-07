@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_SESSION['login']))
 {
-    setcookie('login', $_SESSION['login'],time()+7*24*3600, null, null, false, true);
+    setcookie('login', $_SESSION['email'],time()+7*24*3600, null, null, false, true);
 }
 
 session_destroy();
