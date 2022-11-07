@@ -127,7 +127,7 @@ else {
             <div class="centre1">
                 <div class="ext">
                 <label for="icone"></label><br />
-                    <input type="file" name="photo" class="form-control">
+                    <input type="file" name="photo" class="form-control" accept="img/jpg, img/png, img/jpeg">
 
                     <!-- <span class="tooltip">Votre photo est obligatoire</span><br /><br /> -->
                 </div>
