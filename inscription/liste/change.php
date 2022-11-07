@@ -5,8 +5,6 @@ include ("base.php");
 if(isset($_GET))
 {
   $id=$_GET["id"];
-  
-  
   /* var_dump($id);die; */
 
 $sql = "SELECT * from employe WHERE etat=0 AND id=$id";

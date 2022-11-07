@@ -36,10 +36,13 @@ try {
       
         if($row!=0) // nom d'utilisateur et mot de passe correctes
         {
+           
            $_SESSION['email']=$data['email'];
+           $_SESSION["id"]=$data["id"];
            $ma=$_SESSION["firstName"]=$data["firstName"];         
            $email=$_SESSION["lastName"]=$data["lastName"];         
            $photo=$_SESSION["photo"]=$data["photo"];
+           $_SESSION["matricule"]=$data["matricule"];
 /*              var_dump($data["photo"]);
            die;   */
 

@@ -24,9 +24,8 @@ die; */
           <h5>Nom :</h5> <?php if(isset($_SESSION['lastName'])){echo '<h5>' .$_SESSION['lastName'].'</h5>';} ?>
  </div>
  <div class="profil">
-          <h5>photo :</h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 50px;height:50px;border-radius:50%;"/>'; ?>
- </div>
-            
+          <h5>photo :</h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 50px;height:50px;border-radius:50%;"/>'; ?>      
+ </div>         
  <body>
  <header>
 <?php 
@@ -40,7 +39,7 @@ die; */
          <a href="logout.php" class="lien"><span class="material-symbols-outlined">logout</span></a>   
          <form action="recherche.php" method="post">
          <div class="nnn">
-              <input type="text" placeholder="recherche" name="search" class="recherche">
+              <input title="rechercher" type="text" placeholder="recherche" name="search" class="recherche">
               <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn"/>
               <div class="admin">
               <a href="archive.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste archivée</a>
@@ -191,9 +190,9 @@ die; */
                 echo '<td class="centre">' . $donnees['matricule'] . '</td>';
                 echo '<td class="centre">' . $donnees['email'] . '</td>';
                 echo '<td class="tdliste bb" > 
-                <a href="supp.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous archiver cette personne\')"><span class="material-symbols-outlined">delete</span></a>
-                <a href="modifier.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous modifier cette personne\')"><span class="material-symbols-outlined">border_color</span></a>
-                <a href="change.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous changer le role de cette personne\')"><span class="material-symbols-outlined"> published_with_changes</span></a>         
+                <a title="supprimer" href="supp.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous archiver cette personne\')"><span class="material-symbols-outlined">delete</span></a>
+                <a title="modifier"href="modifier.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous modifier cette personne\')"><span class="material-symbols-outlined">border_color</span></a>
+                <a title="changer" href="change.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous changer le role de cette personne\')"><span class="material-symbols-outlined"> published_with_changes</span></a>         
                 </td>'; 
               }
             }

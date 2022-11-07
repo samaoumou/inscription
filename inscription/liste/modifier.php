@@ -23,9 +23,6 @@ if(!empty($_POST)){
         $result = $conn->exec($list);
         header("Location:liste_active.php");
     }
-    elseif(isset($_POST['form2']))
-    {
-    }
 }
 if(!isset($email)){
     $email=$req_user['email'];
@@ -65,6 +62,7 @@ if(!isset($email)){
                     <input class="btn btn-primary" type="submit" name="form1" value="Modifier">
                 </div>
             </form><br>
+
          </div>
 
        </div>
