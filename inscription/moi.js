@@ -93,7 +93,7 @@ check['photo'] = function() {
     tooltipStyle.display = 'inline-block';
     return false; } };
 // Mise en place des événements
-(function() { // Utilisation d'une fonction anonymepour éviter les variables globales.
+(function() { // Utilisation d'une fonction anonyme pour éviter les variables globales.
 var myForm = document.getElementById('myForm'),
 inputs = document.getElementsByTagName('input'),
 inputsLength = inputs.length;
@@ -101,7 +101,7 @@ for (var i = 0 ; i < inputsLength ; i++) {
 if (inputs[i].type == 'text' || inputs[i].type ==
 'password') {
 inputs[i].onkeyup = function() {
-check[this.id](this.id); // « this » représente l'inputactuellement modifié
+check[this.id](this.id); // « this » représente l'input actuellement modifié
 };
 }
 }
@@ -113,9 +113,7 @@ result = check[i](i) && result;
 if (result) {
 alert('Le formulaire est bien rempli.');
 }
-
 return false;
-
 };
 myForm.onreset = function() {
 for (var i = 0 ; i < inputsLength ; i++) {

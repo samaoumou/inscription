@@ -133,9 +133,8 @@ else {
                 </div>
                 <span class="form_col"></span>
                 <input type="submit" name="submit" id="submit" value="envoyer" class="btn"/> 
-                </form> <br>
+        </form> <br>
      </div>
-    
 </div>    
 <script src="moi.js"></script>
 </body>

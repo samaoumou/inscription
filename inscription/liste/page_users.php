@@ -51,6 +51,9 @@ die; */
          <div class="nnn">
               <input type="text" placeholder="recherche" name="search" class="recherche">
               <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn"/>
+              <div class="users">
+                <h2>PAGE UTILISATEUR</h2>
+              </div>
          </div> 
          </form>
    </div>  
@@ -103,13 +106,6 @@ die; */
     .lien{
       float: right;
     }
-    .lar{
-      float: right;
-      background-color: #FFFF;
-      height: 30px;
-      text-decoration: none;
-      color: #000;
-    }
     tr{
       background-color: #FFFF;
     }
@@ -120,7 +116,8 @@ die; */
     }
     .nnn{
       width: 100%;
-      height: 30px;
+      height: 45px;
+      background-color: rgb(0,30,94);
     }
     .profil{
       width: 15%;
@@ -130,7 +127,14 @@ die; */
       background-color: #FFF;
       justify-content:space-around;
     }
-    
+    .users{
+      width: 60%;
+      background-color: rgb(0,30,94);
+    }
+    h2{
+      float: right;
+      color: #FFF;
+    }
     </style>
     <script src="../moi.js"></script>
 
@@ -186,12 +190,13 @@ die; */
             }
             if($donnees = $reponse->fetch())
             {
+              if($_SESSION['email']!=$donnees['email']){
                 echo '<td class="centre">' . $donnees['firstName'] . '</td>';
                 echo '<td class="centre">' . $donnees['lastName'] . '</td>';
                 echo '<td class="centre">' . $donnees['matricule'] . '</td>';
                 echo '<td class="centre">' . $donnees['email'] . '</td>';
                 echo '<td class="centre">' . $donnees['date_inscription'] . '</td>';
-               
+              }
             }
             else
             {
@@ -323,7 +328,9 @@ table tfoot tr th span.invalide
     color: red;
     background-color: #c0c0c0;
 }
-
+table{
+  background-color: rgb(0,30,94);
+}
 </style>
 </body>
 

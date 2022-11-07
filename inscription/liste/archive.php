@@ -51,12 +51,14 @@ die; */
          <div class="nnn">
               <input type="text" placeholder="recherche" name="search" class="recherche">
               <input type="submit" class="btn" name="submit" id="submit1" value="Rechercher" class="btn"/>
+              <div class="admin">
+              <a href="liste_active.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste active</a>
+                <h2>PAGE ADMINISTRATEUR</h2>
+              </div>
          </div> 
          </form>
    </div>  
  <div class="blue">
-   <img src="" alt="">
-   <a href="liste_active.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste active</a>
      <style> 
      table,td,th{
         padding: 10px;
@@ -105,7 +107,7 @@ die; */
       float: right;
     }
     .lar{
-      float: right;
+      
       background-color: #FFFF;
       height: 30px;
       text-decoration: none;
@@ -121,7 +123,8 @@ die; */
     }
     .nnn{
       width: 100%;
-      height: 30px;
+      height: 45px;
+      background-color: rgb(0,30,94);
     }
     .profil{
       width: 15%;
@@ -131,7 +134,14 @@ die; */
       background-color: #FFF;
       justify-content:space-around;
     }
-    
+    .admin{
+      width: 60%;
+      background-color: rgb(0,30,94);
+    }
+    h2{
+      float: right;
+      color: #FFF;
+    }
     </style>
     <script src="../moi.js"></script>
 
@@ -192,8 +202,8 @@ die; */
                 echo '<td>' . $donnees['lastName'] . '</td>';
                 echo '<td class="centre">' . $donnees['matricule'] . '</td>';
                 echo '<td class="centre">' . $donnees['date_archivage'] . '</td>';
-                echo '<td class="tdliste bb" > 
-                <a href="unarchive.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous désarchiver cette personne\')"><span class="material-symbols-outlined">delete</span></a>         
+                echo '<td class="centre" > 
+                <a href="unarchive.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous désarchiver cette personne\')"><span class="material-symbols-outlined">unarchive</span></a>         
                 </td>';
                
             }

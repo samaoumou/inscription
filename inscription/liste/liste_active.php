@@ -17,6 +17,7 @@ die; */
   <link rel="stylesheet" type="text/css" href="btn.css" />
  </head>
  <div class="profil">
+  <!-- ceci nous permet de récupérer le profil de l'utilisateur à travers les sessions -->
            <h5>Prénom :</h5> <?php if(isset($_SESSION['firstName'])){echo '<h5>' .$_SESSION['firstName'].'</h5>';} ?>
  </div>           
  <div class="profil">
@@ -24,7 +25,8 @@ die; */
  </div>
  <div class="profil">
           <h5>photo :</h5>  <?php echo '<img src="data:image;base64,'.base64_encode($_SESSION["photo"]).'" style="width: 50px;height:50px;border-radius:50%;"/>'; ?>
- </div>           
+ </div>
+            
  <body>
  <header>
 <?php 
@@ -40,18 +42,20 @@ die; */
          <div class="nnn">
               <input type="text" placeholder="recherche" name="search" class="recherche">
               <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn"/>
+              <div class="admin">
+              <a href="archive.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste archivée</a>
+                <h2>PAGE ADMINISTRATEUR</h2>
+              </div>
          </div> 
          </form>
    </div>  
  <div class="blue">
-   <img src="" alt="">
-   <a href="archive.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste archivée</a>
+   
      <style> 
      table,td,th{
         padding: 10px;
         border: 1px solid black;
-        border-collapse: collapse;
-              
+        border-collapse: collapse;        
      }
      body{
       background-color: rgb(214, 214, 214); 
@@ -67,7 +71,6 @@ die; */
         display: flex;
         justify-content: center;
         border: 5px solid blue;
-
     }
     .liste{
     width:400px;
@@ -94,9 +97,8 @@ die; */
       float: right;
     }
     .lar{
-      float: right;
       background-color: #FFFF;
-      height: 30px;
+      height: 40px;
       text-decoration: none;
       color: #000;
     }
@@ -110,7 +112,8 @@ die; */
     }
     .nnn{
       width: 100%;
-      height: 30px;
+      height: 45px;
+      background-color: rgb(0,30,94);
     }
     .profil{
       width: 15%;
@@ -120,19 +123,24 @@ die; */
       background-color: #FFF;
       justify-content:space-around;
     }
-    
+    .admin{
+      width: 60%;
+      background-color: rgb(0,30,94);
+    }
+    h2{
+      float: right;
+      color: #FFF;
+    }
     </style>
     <script src="../moi.js"></script>
 
 <?php
  
-
-
-    
+//Ces lignes qui suivent nous permet de faire la pagination    
     $reponse = $conn->query('SELECT COUNT(*) AS total FROM employe');
     $total_lignes = $reponse->fetch()['total'];
-    $limite = 10;
-    $nbre_pages = ceil($total_lignes / $limite);
+    $limite = 10;   //on définie la limite du nombre de page qu'on veut afficher
+    $nbre_pages = ceil($total_lignes / $limite);   //permet de départager le tableau en 10
     
     $page = (isset($_GET['page']) and $_GET['page']>0) ? $_GET['page'] : 1;
     $page = (isset($_GET['page']) and $_GET['page']>$nbre_pages) ? $nbre_pages : $page;
@@ -176,6 +184,7 @@ die; */
             }
             if($donnees = $reponse->fetch())
             {
+              if($_SESSION['email']!=$donnees['email']){
                 echo '<td>' . $donnees['firstName'] . '</td>';
                 echo '<td>' . $donnees['lastName'] . '</td>';
                 echo '<td>' . $donnees['country'] . '</td>';
@@ -186,6 +195,7 @@ die; */
                 <a href="modifier.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous modifier cette personne\')"><span class="material-symbols-outlined">border_color</span></a>
                 <a href="change.php? id=' . $donnees["id"] . ' " onclick= "return confirm(\'Voulez vous changer le role de cette personne\')"><span class="material-symbols-outlined"> published_with_changes</span></a>         
                 </td>'; 
+              }
             }
             else
             {
@@ -317,10 +327,11 @@ table tfoot tr th span.invalide
   color: red;
   background-color: #c0c0c0;
 }
+table{
+  background-color: rgb(0,30,94);
+}
 
 </style>
-
-
 </body>
 
 </html>
