@@ -21,7 +21,8 @@
                 <label><b>Nom d'utilisateur</b></label>
                 <input type="text" placeholder="Entrer le nom d'utilisateur" name="login" required>
                 <label><b>Mot de passe</b></label>
-                <input type="password" placeholder="Entrer le mot de passe" name="pwd2" required>
+                <input type="password" placeholder="Entrer le mot de passe" name="pwd2" id="myInput" required>
+                <input type="checkbox" onclick="myFunction()">Mode claire
                 <input type="submit" id='submit' value='Se connecter' name='connexion'>
                 <a href="../moi.php">S'incrire</a>
                 <?php
@@ -52,4 +53,14 @@
         background-color: rgb(0,30,94);
     }
   </style> 
+  <script>
+    function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
 </html>

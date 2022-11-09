@@ -29,21 +29,20 @@ die; */
  <body>
  <header>
 <?php 
-
 ?>
             <!-- <span><a href="logout.php">Déconnexion</a></span> -->
-        
     </div>
 </header>
    <div class="">
          <a href="logout.php" class="lien"><span class="material-symbols-outlined">logout</span></a>   
          <form action="recherche.php" method="post">
          <div class="nnn">
-              <input title="rechercher" type="text" placeholder="recherche" name="search" class="recherche">
+              <input title="rechercher" type="text" placeholder="recherche" name="search" class="recherche" required>
               <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn"/>
-              <div class="admin">
+              <div class="admin"> 
+              <a href="pwd.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Modifier le mot de passe</a><br>
               <a href="archive.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Afficher la liste archivée</a>
-                <h2>PAGE ADMINISTRATEUR</h2>
+                <h2>PAGE ADMINISTRATEUR </h2>
               </div>
          </div> 
          </form>
@@ -97,7 +96,7 @@ die; */
     }
     .lar{
       background-color: #FFFF;
-      height: 40px;
+      height: 70px;
       text-decoration: none;
       color: #000;
     }
@@ -111,7 +110,7 @@ die; */
     }
     .nnn{
       width: 100%;
-      height: 45px;
+      height: 60px;
       background-color: rgb(0,30,94);
     }
     .profil{
@@ -125,11 +124,20 @@ die; */
     .admin{
       width: 60%;
       background-color: rgb(0,30,94);
+      height: 60px;
     }
     h2{
       float: right;
       color: #FFF;
     }
+    .scroll-left {
+ height: 50px;	
+ overflow: hidden;
+ position: relative;
+ background: rgb(0,30,94);
+ color: orange;
+ border: 1px solid orange;
+}
     </style>
     <script src="../moi.js"></script>
 

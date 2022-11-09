@@ -170,3 +170,6 @@ function bigImg(x) {
     x.style.color="black";
     x.style.background="white"
   }
+
+
+  

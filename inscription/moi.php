@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];       
 $email = $_POST['login']; 
-$pwd2 = md5($_POST['pwd2']);
+$pwd2 = password_hash($_POST['pwd2'], PASSWORD_DEFAULT);
 $country = $_POST['country'];
 @$photo = file_get_contents($_FILES['photo']['tmp_name']);
 $date_inscription= date( "Y-m-d" );
@@ -18,7 +18,6 @@ $matricule = /* date('Y- ', time()).$row.' -EDR'; */ 'générer automatiquement'
 $select_mail = $conn->prepare("SELECT email FROM `employe` WHERE email = ? ");
 $select_mail->execute([$email]);
  
-
 
 if ($select_mail->rowCount() > 0)
 {

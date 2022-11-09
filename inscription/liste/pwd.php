@@ -1,9 +1,17 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <?php
-include './base.php';
+
+session_start();
+
+?>
+
+
+<?php
+include 'base.php';
 // recupèration des input à modifier
-if(isset($_SESSION['email']))
-$email = $_SESSION['email'];
-$stmt = $conn->prepare("SELECT pwd2 FROM employe WHERE email='$email'");
+$id = $_SESSION['id'];
+$stmt = $conn->prepare("SELECT pwd2 FROM employe WHERE id='$id'");
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $passwords = $row['pwd2'];
@@ -21,7 +29,7 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
             // Hacher le mot de passe
                 $passwordHack=password_hash($_POST["Cpassword"], PASSWORD_DEFAULT) ;
 
-                $stmt = $bdd->prepare("UPDATE employe SET pwd2='$passwordHack'WHERE email='$email'");
+                $stmt = $conn->prepare("UPDATE employe SET pwd2='$passwordHack'WHERE id='$id'");
                 $stmt->execute();
                 if ($stmt) {
                     header("location:liste_active.php");
@@ -53,9 +61,7 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
 </head>
 
 <body>
-    <?php
-    include('misesEnPage.php');
-    ?>
+
     <!-- Formulaire de connexion / boostrap/ CSS -->
     <div class="container  w-50">
         <!-- card(carte) header -->
@@ -73,7 +79,7 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
         
         <!-- card(carte) body -->
         <div class="card-body cardBodyCSS">
-            <button class="btn mt-5"><a href="pageDesActives.php" class="lien">Retour </a></button>
+            <button class="btn mt-5"><a href="liste_active.php" class="lien">Retour </a></button>
             <form action="" method="post" >
                   <!--  novalidate pour la validation du format de l'email (FILTER_VAR($_POST['email'] FILTER_VALIDATE_EMAIL)) -->
                     <label for="nom">Mot de passe Actuel</label><br>
@@ -116,5 +122,12 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
     </div>
 
 </body>
+<style>
+    h3{
+        background-color: rgb(0,30,94);
+        color: #fff;
+        
+    }
+</style>
 
 </html>
