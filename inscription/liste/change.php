@@ -26,4 +26,3 @@ $row=$select->fetch(PDO::FETCH_ASSOC);
     header('location: liste_active.php');
   }
 }
-?>

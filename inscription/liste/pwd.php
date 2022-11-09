@@ -85,7 +85,8 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
                     <label for="nom">Mot de passe Actuel</label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text " id="basic-addon1"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" autocomplete="off" name="Apassword" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="password" class="form-control" autocomplete="off" name="Apassword" aria-label="Username" aria-describedby="basic-addon1" id="myInput1">
+                            <input type="checkbox" onclick="myFunction1()">Mode claire
                         </div>
                             <?php
                             if (isset($erreurPasswordA)) {
@@ -98,13 +99,15 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
                     <label for="nom">Nouveau mot de passe</label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text " id="basic-addon1"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" autocomplete="off" name="Npassword" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="password" class="form-control" autocomplete="off" name="Npassword" aria-label="Username" aria-describedby="basic-addon1" id="myInput2">
+                            <input type="checkbox" onclick="myFunction2()">Mode claire
                         </div>   
                        
                     <label for="nom">Confirmez votre nouveau mot de passe</label><br>
                         <div class="input-group mb-3">
                             <span class="input-group-text " id="basic-addon1"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" class="form-control" autocomplete="off" name="Cpassword" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="password" class="form-control" autocomplete="off" name="Cpassword" aria-label="Username" aria-describedby="basic-addon1" id="myInput3">
+                            <input type="checkbox" onclick="myFunction3()">Mode claire
                         </div> 
                         <?php
                             if (isset($erreurPasswordC)) {
@@ -129,5 +132,30 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
         
     }
 </style>
-
+<script>
+    function myFunction1() {
+  var x = document.getElementById("myInput1");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function myFunction2() {
+  var x = document.getElementById("myInput2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+function myFunction3() {
+  var x = document.getElementById("myInput3");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
 </html>
