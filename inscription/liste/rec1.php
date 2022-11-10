@@ -1,18 +1,18 @@
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <?php
 include("base.php");
 if(isset($_POST['submit'])){
       $mat=$_POST['search'];
       /*  $search=$_GET['search']; */
-      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE matricule=:matricule and etat= 0");
+      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE firstName=:matricule OR lastName=:matricule OR matricule=:matricule and etat= 0");
       $select->execute(['matricule' => $mat]);
       $row=$select->fetch(PDO::FETCH_ASSOC);
 
 }
 ?> 
 
-      <a href="page_users.php" class="retour">Retour</a>
+      <a href="page_users.php" class="retour"><span class="material-symbols-outlined">assignment_return</span></a>
       <div class="centre">
       <table class="lion">
          <tr>

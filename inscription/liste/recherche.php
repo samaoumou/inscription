@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 <?php
 include("base.php");
@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
       $row=$select->fetch(PDO::FETCH_ASSOC);
 }
 ?>  
-      <a href="liste_active.php" class="retour">Retour</a>
+      <a href="liste_active.php" class="retour"><span class="material-symbols-outlined">assignment_return</span></a>
       <div class="centre">
       <table class="lion">
          <tr>

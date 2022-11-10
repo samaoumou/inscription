@@ -62,5 +62,6 @@
     x.type = "password";
   }
 }
+
   </script>
 </html>
