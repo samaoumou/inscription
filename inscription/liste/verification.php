@@ -43,10 +43,10 @@ if($row > 0){
                 header('location:page_users.php');
                 die();
             }
-        }else{header('Location: login.php?login_err=mot_de_passe_utilisateurs'); die();}
-    }else{header('Location : login.php?login_err=email_utilisateurs'); die();}
-}else{header('Location: login.php?login_err=already'); die();}
-}else{header('Location: login.php'); die();
+        }else{header('Location: login.php?erreur=1'); }
+    }else{header('Location : login.php?erreur=1');}
+}else{header('Location: login.php?erreur=1'); }
+}else{header('Location: login.php'); 
 }
 }
 ?>

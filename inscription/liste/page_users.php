@@ -31,29 +31,18 @@ die; */
 <div class="profil">
   <h5>photo :</h5> <?php echo '<img src="data:image;base64,' . base64_encode($_SESSION["photo"]) . '" style="width: 50px;height:50px;border-radius:50%;"/>'; ?>
 </div>
-
-
-
 <body>
   <header>
-
     <?php
-
-
-
     ?>
-
-
-
-
     <!-- <span><a href="logout.php">Déconnexion</a></span> -->
-
     </div>
   </header>
   <div class="">
     <a href="logout.php" class="lien"><span class="material-symbols-outlined">logout</span></a>
     <form action="rec1.php" method="post">
       <div class="nnn">
+      <a href="pwd.php" class="lar" onmouseover="bigImg(this)" onmouseout="normalImg(this)">Modifier le mot de passe</a>
         <input type="text" placeholder="recherche" name="search" class="recherche">
         <input type="submit" class="btn" name="submit" id="submit" value="Rechercher" class="btn" />
         <div class="users">
@@ -111,6 +100,7 @@ die; */
       .recherche {
         height: 40px;
         float: right;
+        
       }
 
       .main {
@@ -135,7 +125,7 @@ die; */
 
       .nnn {
         width: 100%;
-        height: 45px;
+        height: 60px;
         background-color: rgb(0, 30, 94);
       }
 
@@ -157,13 +147,16 @@ die; */
         float: right;
         color: #FFF;
       }
+      .lar{
+      background-color: #FFFF;
+      height: 70px;
+      text-decoration: none;
+      color: #000;
+    }
     </style>
     <script src="../moi.js"></script>
 
     <?php
-
-
-
 
     $reponse = $conn->query('SELECT COUNT(*) AS total FROM employe');
     $total_lignes = $reponse->fetch()['total'];
@@ -178,9 +171,6 @@ die; */
     $reponse->bindValue('debut', $debut, PDO::PARAM_INT);
     $reponse->bindValue('limite', $limite, PDO::PARAM_INT);
     $reponse->execute() || die('Impossible de charger la page');
-
-
-
     ?>
     <div class="centrer">
 

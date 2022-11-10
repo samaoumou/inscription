@@ -32,7 +32,8 @@ if (isset($_POST['Apassword'],$_POST['Npassword'],$_POST['Cpassword'])&& !empty(
                 $stmt = $conn->prepare("UPDATE employe SET pwd2='$passwordHack'WHERE id='$id'");
                 $stmt->execute();
                 if ($stmt) {
-                    header("location:liste_active.php");
+                    $bien[] = "Mot de passe bien modifier";
+                    header("location:logout.php");
                 } else {
                     die('Erreur : ' . $e->getMessage());
                 }
