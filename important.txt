@@ -1,0 +1,51 @@
+******************************IMPORTANT***********************************
+* /* ma base de donnée s'appelle "inscription" */ *
+* *
+* /* *
+* * J'ai une table dans la base de donnée : *
+* * "employe" : contient la liste des utilisateurs et administrateurs inscrits *
+* * les page contient une liste de pluse de 30 employés qui *
+* seront affichés dans la page "liste_active.php" avec un système *
+* de pagination *
+* */ *
+******************************IMPORTANT***********************************
+
+je vous conseille de créer la base de donnée inscription et d'importer
+le table "employe" .
+
+#Les différents fichiers du projet :
+-->liste_active.php : est la page qui est affichée si une session est en cours quand on se connecte en tant que admin;
+
+-->page_users.php : est la page qui est affichée si une session est en cours quand on se connecte en tant que users;
+
+-->login.php : est la page de connexion et d'inscription;
+
+-->logout.php : est la page de déconnexion;
+
+-->base.php : est la page de connexion à la base de donnée;
+
+-->recherche.php : qui permet de faire les recherche par prenom ;
+
+-->recherche.php : qui permet de faire les modification sur les prenoms, les noms, et les emails mais tout en étant administrateur  ;
+
+-->pwd.php : qui permet de faire les changements de mot de passe de celui qui est connecté ;
+
+-->style.css : seule la page "accueil.php" est <<stylisée>>.
+
+-->moi.php : la page d'inscription ;
+
+-->moi.js : qui gere les controles de saisie avec JavaScript ;
+
+
+*****************************CONTACT***********************************
+* *
+* /* *
+* mail : ndiayeissa598@gmail.com *
+* */ *
+* Vos critiques sont attendues, elles sont les bienvenues!!! *
+* *
+*****************************CONTACT***********************************
+
+code écrit par Issa Ndiaye, étudiant à Simplon Sénégal "Digitalisation et maintenance de la chaine de production industrielle"
+
+novembre 2022
