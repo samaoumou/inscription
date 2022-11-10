@@ -94,19 +94,7 @@
       return false;
     }
   };
-  check['photo'] = function () {
-    var login = document.getElementById('photo'),
-      tooltipStyle = getTooltip(email).style;
-    if (login.value.length != '') {
-      login.className = 'correct';
-      tooltipStyle.display = 'none';
-      return true;
-    } else {
-      login.className = 'incorrect';
-      tooltipStyle.display = 'inline-block';
-      return false;
-    }
-  };
+
   // Mise en place des événements
   (function () { // Utilisation d'une fonction anonyme pour éviter les variables globales.
     var myForm = document.getElementById('myForm'),

@@ -77,19 +77,19 @@ if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST
                 <div class="centre">
                     <div class="ext">
                         <label class="form_col" for="lastName">Nom :</label><br>
-                        <input name="lastName" id="lastName" type="text" />
+                        <input name="lastName" id="lastName" type="text" required />
                         <span class="tooltip">Un nom ne peut pas faire moins de 2 caractères</span><br /><br />
                     </div>
                     <div class="ext">
                         <label class="form_col" for="firstName">Prénom:</label><br>
-                        <input name="firstName" id="firstName" type="text" />
+                        <input name="firstName" id="firstName" type="text" required />
                         <span class="tooltip">Un prénom ne peut pas faire moins de 2 caractères</span><br /><br />
                     </div>
                 </div>
                 <div class="centre">
                     <div class="ext">
                         <label class="form_col" for="email">Mail :</label><br>
-                        <input name="login" id="email" type="mail" />
+                        <input name="login" id="email" type="email"  />
                         <span class="tooltip">L'adresse email est invalide</span><br /><br />
                     </div>
                     <div class="ext">
@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST
                 <div class="centre1">
                     <div class="ext">
                         <label for="icone"></label><br />
-                        <input type="file" name="photo" class="form-control" accept="image/*">
+                        <input type="file" name="photo" class="form-control" accept="image/*" required>
 
                         <!-- <span class="tooltip">Votre photo est obligatoire</span><br /><br /> -->
                     </div>
@@ -129,4 +129,21 @@ if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST
     <script src="moi.js"></script>
 </body>
 
+<script>
+        document.forms[0].addEventListener("submit", function(evenement) { 
+
+            if (document.getElementById("pwd1").value == 0) {
+                evenement.preventDefault();
+                alert("le mot de passe ne peut pas etre vide");
+                document.getElementById("pwd1").focus();
+            }
+
+            if (document.getElementById("pwd1").value != document.getElementById("pwd2").value) {
+                evenement.preventDefault();
+                alert("les mots de passe ne correspondent pas");
+                document.getElementById("pwd2").focus();
+            }
+
+        });
+    </script>
 </html>

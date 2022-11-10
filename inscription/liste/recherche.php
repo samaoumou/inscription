@@ -5,8 +5,8 @@ include("base.php");
 if(isset($_POST['submit'])){
       $mat=$_POST['search'];
       /*  $search=$_GET['search']; */
-      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE matricule=:matricule and etat= 0");
-      $select->execute(['matricule' => $mat]);
+      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE firstName=:firstName and etat= 0");
+      $select->execute(['firstName' => $mat]);
       $row=$select->fetch(PDO::FETCH_ASSOC);
 }
 ?>  
@@ -19,13 +19,13 @@ if(isset($_POST['submit'])){
             <th>Email</th>
          </tr>
          <td>
-            <?= $row['firstName']; ?>
+            <p class="centre1"><?= $row['firstName']; ?></p>
          </td>
          <td>
-            <?= $row['lastName']; ?>
+         <p class="centre1"><?= $row['lastName']; ?></p>
          </td>
          <td>
-            <?= $row['email']; ?>
+         <p class="centre1"><?= $row['email']; ?></p>
          </td>
       </table>
       </div>
@@ -50,6 +50,10 @@ if(isset($_POST['submit'])){
    .retour{
       background-color: #FFFF;
       text-decoration: none;
+   }
+   .centre1{
+      display: flex;
+      justify-content: center;
    }
   </style>    
 
