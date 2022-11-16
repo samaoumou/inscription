@@ -127,7 +127,7 @@
       }
       deactivateTooltips();
     };
-  })();
+  };
   // Maintenant que tout est initialisé, on peutdésactiver les « tooltips »
   deactivateTooltips();
 })();
