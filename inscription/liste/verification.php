@@ -43,10 +43,10 @@ if($row > 0){
                 header('location:page_users.php');
                 die();
             }
-        }else{header('Location: login.php?erreur=1'); }
-    }else{header('Location : login.php?erreur=1');}
-}else{header('Location: login.php?erreur=1'); }
-}else{header('Location: login.php'); 
+        }else{header('Location: index.php?erreur=1'); }
+    }else{header('Location : index.php?erreur=1');}
+}else{header('Location: index.php?erreur=1'); }
+}else{header('Location: index.php'); 
 }
 }
 ?>

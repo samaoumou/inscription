@@ -5,8 +5,8 @@ include("base.php");
 if(isset($_POST['submit'])){
       $mat=$_POST['search'];
       /*  $search=$_GET['search']; */
-      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE firstName=:firstName and etat= 0");
-      $select->execute(['firstName' => $mat]);
+      $select=$conn->prepare("SELECT firstName, lastName, email from employe WHERE matricule=:matricule and etat= 0");
+      $select->execute(['matricule' => $mat]);
       $row=$select->fetch(PDO::FETCH_ASSOC);
 }
 ?>  

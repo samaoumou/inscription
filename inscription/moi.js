@@ -109,7 +109,7 @@
       }
     }
     myForm.onsubmit = function () {
-      var result = true;
+/*       var result = true;
       for (var i in check) {
         result = check[i](i) && result;
       }
@@ -117,7 +117,7 @@
         alert('Le formulaire est bien rempli.');
       }
       return false;
-    };
+    }; */
     myForm.onreset = function () {
       for (var i = 0; i < inputsLength; i++) {
         if (inputs[i].type == 'text' || inputs[i].type ==

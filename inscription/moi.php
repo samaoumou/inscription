@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) { //isset permet de vérifier si la variable $_POST
 
         $message[]  = "inscription reussi, votre matricule: " . $matricule;
         $compte = true;
-        echo '<a href="liste/login.php">Se connecter</a>';
+        echo '<a href="liste/index.php">Se connecter</a>';
     }
 }
 ?>

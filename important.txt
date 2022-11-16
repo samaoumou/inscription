@@ -31,7 +31,7 @@ la table "employe" .
 -->modifier.php : qui permet de faire les modification sur les prenoms, les noms, et les emails mais tout en étant administrateur  ;
 
 --> change.php : permet de changer les roles de chaque employe;
-
+'<s"d
 --> supp.php : permet d'archiver les employes;
 
 --> unarchive.php : permet de désarchiver les employes;
